@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // cek username and passsword
+    // cek username and password
     $sql = "SELECT * FROM users WHERE username=? AND password=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $password);
@@ -128,6 +128,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             text-align: center;
         }
 
+        .register-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .register-link a {
+            color: #6a11cb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -141,6 +156,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="password" name="password" required>
             <button type="submit">Login</button>
         </form>
+        <div class="register-link">
+            <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
+        </div>
     </div>
 </body>
 </html>
