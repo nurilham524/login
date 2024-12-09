@@ -24,7 +24,7 @@ Fitur Utama
  
 1. Clone Repository
         Gunakan :
-        '''bash
+        `bash`
         git clone https://github.com/nurilham524/login.git
         cd login
 2.  Setup Database
