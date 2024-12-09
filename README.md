@@ -4,7 +4,7 @@
 
     Aplikasi ini adalah platform chat sederhana berbasis PHP dan MySQL yang memungkinkan pengguna untuk:
 
-    - Mendaftar akun baru dengan detail lengkap seperti nama,username, email, alamat, dan password.
+    - Mendaftar akun baru dengan detail lengkap seperti nama, username, email, alamat, dan password.
     - Login untuk mengakses fitur chatting.
     - Chat dengan pengguna lain
 
@@ -72,6 +72,7 @@ Fitur Utama
     - login menggunakan akun yang telah anda buat melalui http://localhost/login/login.php
 
 Struktur Folder
+
 Login/
 │
 ├──chat
