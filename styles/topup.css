@@ -1,0 +1,113 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(120deg, #1f1c2c, #928dab);
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #00ffcc;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
+    text-transform: uppercase;
+}
+
+/* Saldo Display */
+p {
+    font-size: 18px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 255, 204, 0.4);
+}
+
+/* Error and Success Messages */
+p[style*="color: red"] {
+    color: #ff4444;
+    background-color: rgba(255, 68, 68, 0.1);
+    border: 1px solid #ff4444;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+form {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+form label {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    display: block;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+}
+
+form input[type="number"] {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+}
+
+form input[type="number"]:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.8);
+}
+
+form button {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00ffcc;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 255, 204, 0.5);
+}
+
+form button:hover {
+    background-color: #00bfa5;
+    box-shadow: 0 5px 20px rgba(0, 255, 204, 0.7);
+}
+
+/* Link Style */
+a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #00ffcc;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #00bfa5;
+    text-decoration: underline;
+    text-shadow: 0px 0px 5px rgba(0, 255, 204, 0.7);
+}

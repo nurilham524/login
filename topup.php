@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             window.location.href = redirectUrl;
         }
     </script>
+    <link rel="stylesheet" href="./styles/topup.css">
 </head>
 <body>
     <h2>Top Up Saldo</h2>

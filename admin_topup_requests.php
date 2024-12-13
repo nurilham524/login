@@ -54,6 +54,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Up Requests</title>
+    <link rel="stylesheet" href="./styles/admin_topup_request.css">
 </head>
 <body>
     <h2>Daftar Permintaan Top-Up</h2>

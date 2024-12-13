@@ -2,7 +2,7 @@
 session_start();
 include 'db.php'; 
 
-// Cek user login
+// Cek jika user sudah login
 if (isset($_SESSION['role'])) {
     if ($_SESSION['role'] == 'admin') {
         header("Location: admin.php");
@@ -14,17 +14,20 @@ if (isset($_SESSION['role'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = $_POST['password'];  // password tidak digunakan di sini
 
-    // cek username and password
-    $sql = "SELECT * FROM users WHERE username=? AND password=?";
+    // Cek username dan password
+    $sql = "SELECT * FROM users WHERE username=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $username, $password);
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
+
+        // Set session untuk user
+        $_SESSION['user_id'] = $user['id'];  // Menyimpan user_id di session
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
 
@@ -33,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             header("Location: dashboard.php");
         }
+        exit();
     } else {
         $error = "Invalid username or password.";
     }
@@ -45,105 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #fff;
-        }
-
-        .login-container {
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            padding: 40px 30px;
-            width: 350px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .login-container h2 {
-            margin-bottom: 30px;
-            font-size: 28px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .login-container label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: #ddd;
-        }
-
-        .login-container input[type="text"],
-        .login-container input[type="password"] {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-
-        .login-container input[type="text"]:focus,
-        .login-container input[type="password"]:focus {
-            background-color: rgba(255, 255, 255, 0.4);
-            outline: none;
-            box-shadow: 0 0 8px rgba(38, 170, 255, 0.6);
-        }
-
-        .login-container button {
-            width: 100%;
-            padding: 15px;
-            background-color: #2575fc;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .login-container button:hover {
-            background-color: #6a11cb;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .error {
-            color: #ff6666;
-            margin-top: 15px;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .register-link {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #ddd;
-        }
-
-        .register-link a {
-            color: #6a11cb;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .register-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="./styles/login.css">
 </head>
 <body>
     <div class="login-container">
