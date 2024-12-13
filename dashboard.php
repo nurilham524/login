@@ -23,6 +23,20 @@ if ($result->num_rows > 0) {
     echo "User not found!";
     exit();
 }
+
+// get user balance from database
+$balance_sql = "SELECT balance FROM user_balance WHERE user_id = ?";
+$balance_stmt = $conn->prepare($balance_sql);
+$balance_stmt->bind_param("i", $user['id']);
+$balance_stmt->execute();
+$balance_result = $balance_stmt->get_result();
+
+if ($balance_result->num_rows > 0) {
+    $balance_row = $balance_result->fetch_assoc();
+    $user_balance = $balance_row['balance'];
+} else {
+    $user_balance = 0.00; // Default balance if not found
+}
 ?>
 
 <!DOCTYPE html>
@@ -87,6 +101,7 @@ if ($result->num_rows > 0) {
             cursor: pointer;
             font-size: 18px;
             transition: all 0.3s ease;
+            margin-bottom: 10px;
         }
 
         .dashboard-container button:hover {
@@ -109,15 +124,17 @@ if ($result->num_rows > 0) {
 </head>
 <body>
     <div class="dashboard-container">
-        <h2>Welcome, <?php echo ($user['username']); ?></h2>
+        <h2>Welcome, <?php echo htmlspecialchars($user['username']); ?></h2>
         <div class="profile-info">
-            <p><label>Name:</label> <?php echo ($user['name']); ?></p>
-            <p><label>Email:</label> <?php echo ($user['email']); ?></p>
-            <p><label>Address:</label> <?php echo ($user['address']); ?></p>
-            <p><label>Role:</label> <?php echo ($user['role']); ?></p>
+            <p><label>Name:</label> <?php echo htmlspecialchars($user['nama']); ?></p>
+            <p><label>Email:</label> <?php echo htmlspecialchars($user['email']); ?></p>
+            <p><label>Address:</label> <?php echo htmlspecialchars($user['alamat']); ?></p>
+            <p><label>Role:</label> <?php echo htmlspecialchars($user['role']); ?></p>
+            <p><label>Balance:</label> Rp <?php echo number_format($user_balance, 2, ',', '.'); ?></p>
         </div>
         <button onclick="window.location.href='edit_profile.php'">Edit Profile</button>
         <button onclick="window.location.href='./chat/chat_list.php'">Chat</button>
+        <button onclick="window.location.href='topup.php'">Top Up</button>
         <a class="logout" href="logout.php">Logout</a>
     </div>
 </body>

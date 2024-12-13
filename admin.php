@@ -81,7 +81,7 @@ $result = $conn->query($sql);
             background-color: rgba(255, 255, 255, 0.2);
         }
 
-        .logout-btn {
+        .logout-btn, .topup-btn {
             display: inline-block;
             margin-top: 20px;
             padding: 12px 20px;
@@ -95,7 +95,7 @@ $result = $conn->query($sql);
             width: 100%;
         }
 
-        .logout-btn:hover {
+        .logout-btn:hover, .topup-btn:hover {
             background: linear-gradient(135deg, #ff4b2b, #ff416c);
             transform: scale(1.05);
         }
@@ -145,6 +145,7 @@ $result = $conn->query($sql);
                 ?>
             </tbody>
         </table>
+        <a href="admin_topup_requests.php" class="topup-btn">View Top-up Requests</a>
         <a href="logout.php" class="logout-btn">Logout</a>
     </div>
 </body>
