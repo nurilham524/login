@@ -126,7 +126,15 @@ pastikan struktur folder seperti berikut:
 |__ README.md
 
 ```
+## Tampilan Admin
+![alt text](https://github.com/nurilham524/login/blob/master/public/Admin_Dashboard.jpeg?raw=true)
+
 ## Tampilan User
+- User Dashboard
 ![alt text](https://github.com/nurilham524/login/blob/master/public/User_Dashboard.png?raw=true)
+
+- Chat Display
 ![alt text](https://github.com/nurilham524/login/blob/master/public/Chat_display.png?raw=true)
+
+- Topup Display
 ![alt text](https://github.com/nurilham524/login/blob/master/public/Topup_Display.png?raw=true)
