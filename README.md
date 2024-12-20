@@ -1,18 +1,22 @@
-# Chat Application with User Registration
+![alt text](https://github.com/nurilham524/login/blob/master/public/Login.png?raw=true)
+# Manajemen Keuangan & Chat Application with User Registration
 
 
 ## Deskripsi Proyek
-Aplikasi ini adalah platform chat sederhana berbasis PHP dan MySQL yang memungkinkan pengguna untuk:
+Aplikasi ini adalah platform manajemen keuangan & chat sederhana berbasis PHP dan MySQL yang memungkinkan pengguna untuk:
 - Mendaftar akun baru dengan detail lengkap seperti nama, username, email, alamat, dan password.
-- Login untuk mengakses fitur chatting.
+- Login untuk mengakses fitur chatting dan top-up saldo.
 - Chat dengan pengguna lain
+- transfer saldo sesama user
 
 ## Fitur Utama
 
 1. User Registration: Pengguna dapat mendaftar dengan informasi seperti nama, username, email, alamat, dan password.
 2. User Login: Sistem otentikasi untuk memvalidasi kredensial.
 3. Chat System: Pengguna dapat saling mengirim pesan, dilengkapi dengan desain bubble chat.
-4. Admin Dashboard: Halaman khusus untuk admin.
+4. Topup Saldo: User dapat melakukan topup dengan persetujuan admin
+5. Transfer Saldo: User dapat mengirim saldo ke user lain.
+6. Admin Dashboard: Halaman khusus untuk admin.
 
 ## Panduan Instalasi (prasyarat)
 
@@ -89,16 +93,29 @@ if ($conn->connect_error) {
 ```
 ## Jalankan Aplikasi
 - Akses halaman registrasi melalui http://localhost/LOGIN/registrasi.php untuk mendaftar akun baru
+  ![alt text](https://github.com/nurilham524/login/blob/master/public/Registrasi.png?raw=true)
 - Login menggunakan akun yang telah dibuat melalui http://localhost/LOGIN/login.php
 
 ## Struktur Folder
 pastikan struktur folder seperti berikut:
 ```
 📦LOGIN
-|-- chat
-     |-- chat_list.php
-     |-- chat.php
-     |-- send_messages.php
+|--chat
+|    |-- chat_list.php
+|    |-- chat.php
+|    |__ send_messages.php
+|
+|--Public
+|--Styles
+|    |-- admin_topup_request.css
+|    |-- Admin.css
+|    |-- dashboard.css
+|    |-- login.css
+|    |-- registrasi.css
+|    |-- topup.css
+|    |__ transfer.css
+|
+|--Uploads
 |-- admin.php
 |-- dashboard.php
 |-- db.php
@@ -106,5 +123,10 @@ pastikan struktur folder seperti berikut:
 |-- login.php
 |-- logout.php
 |-- register.php
-|-- README.md
+|__ README.md
 
+```
+## Tampilan User
+![alt text](https://github.com/nurilham524/login/blob/master/public/User_Dashboard.png?raw=true)
+![alt text](https://github.com/nurilham524/login/blob/master/public/Chat_display.png?raw=true)
+![alt text](https://github.com/nurilham524/login/blob/master/public/Topup_Display.png?raw=true)
