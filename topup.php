@@ -27,18 +27,33 @@ $user_balance = $balance_result->fetch_assoc()['balance'] ?? 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $amount = $_POST['amount'];
+    $uploadDir = "uploads/";
+    $uploadFile = $uploadDir . basename($_FILES['proof']['name']);
+    $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
 
+    // Validasi jumlah nominal
     if (empty($amount) || $amount <= 0) {
         $error = "Nominal top-up tidak valid.";
-    } else {
-        $sql = "INSERT INTO topup_requests (user_id, amount) VALUES (?, ?)";
+    }
+    // Validasi file upload
+    elseif (!in_array($imageFileType, ['jpg', 'jpeg', 'png', 'gif'])) {
+        $error = "Hanya file gambar dengan format JPG, JPEG, PNG, atau GIF yang diperbolehkan.";
+    } 
+    elseif ($_FILES['proof']['size'] > 5000000) { // Batas ukuran 5MB
+        $error = "Ukuran file terlalu besar. Maksimal 5MB.";
+    }
+    // Proses upload file
+    elseif (move_uploaded_file($_FILES['proof']['tmp_name'], $uploadFile)) {
+        $sql = "INSERT INTO topup_requests (user_id, amount, images) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("id", $user['id'], $amount);
+        $stmt->bind_param("ids", $user['id'], $amount, $uploadFile);
         if ($stmt->execute()) {
             $success = "Permintaan top-up berhasil dikirim. Menunggu konfirmasi admin.";
         } else {
             $error = "Terjadi kesalahan, coba lagi.";
         }
+    } else {
+        $error = "Gagal mengunggah bukti transfer.";
     }
 }
 ?>
@@ -69,9 +84,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             showPopupAndRedirect("<?php echo $success; ?>", "dashboard.php");
         </script>
     <?php endif; ?>
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         <label for="amount">Nominal Top-Up:</label>
         <input type="number" name="amount" id="amount" required>
+        <br>
+        <label for="proof">Unggah Bukti Transfer:</label>
+        <input type="file" name="proof" id="proof" required>
+        <br>
         <button type="submit">Kirim Permintaan</button>
     </form>
     <a href="dashboard.php">Kembali</a>

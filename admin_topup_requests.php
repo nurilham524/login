@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Fetch pending requests
-$sql = "SELECT tr.id, u.nama, tr.amount, tr.created_at 
+$sql = "SELECT tr.id, u.nama, tr.amount, tr.created_at, tr.images 
         FROM topup_requests tr 
         JOIN users u ON tr.user_id = u.id 
         WHERE tr.status = 'pending'";
@@ -66,13 +66,21 @@ $result = $conn->query($sql);
             <th>Nama User</th>
             <th>Nominal</th>
             <th>Tanggal Permintaan</th>
+            <th>Bukti Transfer</th>
             <th>Aksi</th>
         </tr>
         <?php while ($row = $result->fetch_assoc()): ?>
             <tr>
                 <td><?php echo $row['nama']; ?></td>
-                <td><?php echo $row['amount']; ?></td>
+                <td><?php echo number_format($row['amount'], 2); ?></td>
                 <td><?php echo $row['created_at']; ?></td>
+                <td>
+                    <?php if (!empty($row['images'])): ?>
+                        <img src="uploads/<?php echo $row['images']; ?>" alt="Bukti Transfer" width="100">
+                    <?php else: ?>
+                        <em>Tidak ada bukti</em>
+                    <?php endif; ?>
+                </td>
                 <td>
                     <form method="POST" action="">
                         <input type="hidden" name="request_id" value="<?php echo $row['id']; ?>">
