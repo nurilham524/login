@@ -73,6 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="./styles/topup.css">
 </head>
 <body>
+<div class="logo" style="position: absolute; top: 20px; right: 20px; font-size: 24px; font-weight: bold; color: #000000;">
+    <h1>NemoSal</h1>
+</div>
     <h2>Top Up Saldo</h2>
     <p>Saldo Anda saat ini: <strong><?php echo number_format($user_balance, 2); ?></strong></p>
     <?php if (isset($error)): ?>

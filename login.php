@@ -52,6 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="./styles/login.css">
 </head>
 <body>
+<div class="logo" style="position: absolute; top: 20px; right: 20px; font-size: 24px; font-weight: bold; color: #fff;">
+    <h1>NemoSal</h1>
+</div>
     <div class="login-container">
         <h2>Login</h2>
         <?php if (isset($error)) { echo "<p class='error'>$error</p>"; } ?>

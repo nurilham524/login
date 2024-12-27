@@ -25,6 +25,9 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="./styles/admin.css">
 </head>
 <body>
+<div class="logo" style="position: absolute; top: 20px; right: 20px; font-size: 24px; font-weight: bold; color: #000000;">
+    <h1>NemoSal</h1>
+</div>
     <div class="container">
         <h2>User Data</h2>
         <table>

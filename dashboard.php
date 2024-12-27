@@ -48,6 +48,9 @@ if ($balance_result->num_rows > 0) {
     <link rel="stylesheet" href="./styles/dashboard.css">
 </head>
 <body>
+<div class="logo" style="position: absolute; top: 20px; right: 20px; font-size: 24px; font-weight: bold; color: #000000;">
+    <h1>NemoSal</h1>
+</div>
     <div class="dashboard-container">
         <h2>Welcome, <?php echo htmlspecialchars($user['username']); ?></h2>
         <div class="profile-info">

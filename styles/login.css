@@ -10,6 +10,16 @@ body {
     height: 100vh;
     color: #fff;
 }
+body .logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 
 .login-container {
     background-color: rgba(0, 0, 0, 0.7);
@@ -96,3 +106,6 @@ body {
 .register-link a:hover {
     text-decoration: underline;
 }
+
+
+

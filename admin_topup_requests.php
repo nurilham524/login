@@ -57,6 +57,9 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="./styles/admin_topup_request.css">
 </head>
 <body>
+<div class="logo" style="position: absolute; top: 20px; right: 20px; font-size: 24px; font-weight: bold; color: #000000;">
+    <h1>NemoSal</h1>
+</div>
     <h2>Daftar Permintaan Top-Up</h2>
     <?php if (isset($error)): ?>
         <p style="color: red;"><?php echo $error; ?></p>

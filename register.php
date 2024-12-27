@@ -55,6 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="./styles/registrasi.css">
 </head>
 <body>
+<div class="logo" style="position: absolute; top: 20px; right: 20px; font-size: 24px; font-weight: bold; color: #000000;">
+    <h1>NemoSal</h1>
+</div>
     <div class="container">
         <h2>Register</h2>
         <?php if (isset($error)): ?>
