@@ -17,23 +17,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];  // password tidak digunakan di sini
 
     // Cek username dan password
-    $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM users WHERE username=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
 
-    // Set session untuk user
-    $_SESSION['user_id'] = $user['id'];  // Menyimpan user_id di session
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['role'] = $user['role'];
+        // Set session untuk user
+        $_SESSION['user_id'] = $user['id'];  // Menyimpan user_id di session
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
 
-    if ($user['role'] == 'admin') {
-        header("Location: admin.php");
-    } else {
-        header("Location: dashboard.php");
-    }
-    exit();
+        if ($user['role'] == 'admin') {
+            header("Location: admin.php");
+        } else {
+            header("Location: dashboard.php");
+        }
+        exit();
     } else {
         $error = "Invalid username or password.";
     }
