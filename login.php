@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Cek username dan password
     $sql = "SELECT * FROM users WHERE username='$username'";
-$result = $conn->query($sql);
+    $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
